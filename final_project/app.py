@@ -20,6 +20,24 @@ def index():
     conn.close()
     return render_template('journal.html', entries = entries)
 
+@app.route('/journal', methods = ["GET", "POST"])
+def journal():
+    entry = request.form['entry']
+    date = request.form['date']
+    conn = sqlite3.connect('./static/data/entries.db')
+    curs = conn.cursor()
+    curs.execute("INSERT INTO entries(entry, date) VALUES((?),(?))",(entry,date))
+    conn.commit()
+    conn.close()
+    conn = sqlite3.connect('./static/data/entries.db')
+    curs = conn.cursor()
+    entries = []
+    rows = curs.execute("SELECT * from entries")
+    for row in rows:
+        entry = {'entry':row[0], 'date':row[1]}
+        entries.append(entry)
+    conn.close()
+    return render_template('journal.html', entry = entry, date = date, entries = entries)
 
 
 
