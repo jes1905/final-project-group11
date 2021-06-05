@@ -10,6 +10,9 @@ app = Flask(__name__)
 
 @app.route('/', methods = ["GET", "POST"])
 def index():
+
+@app.route('/start', methods = ["GET", "POST"])
+def start():
     conn = sqlite3.connect('./static/data/entries.db')
     curs = conn.cursor()
     entries = []
