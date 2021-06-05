@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+
+    <body>
+        
+        <div style="text-align:center">
+            <h1> past check ins </h1>
+             {% for check in checkin %}
+             
+                 <p>{{check["number"]}} on {{check["date"]}}</p>
+ 
+                 {% endfor %}
+         </div>
+        
+    </body>
+
+</html>

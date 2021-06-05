@@ -10,6 +10,35 @@ app = Flask(__name__)
 
 @app.route('/', methods = ["GET", "POST"])
 def index():
+    conn = sqlite3.connect('./static/data/checkin.db')
+    curs = conn.cursor()
+    checkin = []
+    rows = curs.execute("SELECT * from checkin")
+    for row in rows:
+        check = {'number':row[0], 'date':row[1]}
+        checkin.append(check)
+    conn.close()
+    return render_template("checkin.html", checkin = checkin)
+
+@app.route('/past', methods = ["GET", "POST"])
+def past():
+    number = request.form['number']
+    date = request.form['date']
+    conn = sqlite3.connect('./static/data/checkin.db')
+    curs = conn.cursor()
+    curs.execute("INSERT INTO checkin(number, date) VALUES((?),(?))",(number,date))
+    conn.commit()
+    conn.close()
+    conn = sqlite3.connect('./static/data/checkin.db')
+    curs = conn.cursor()
+    checkin = []
+    rows = curs.execute("SELECT * from checkin")
+    for row in rows:
+        check = {'number':row[0], 'date':row[1]}
+        checkin.append(check)
+    conn.close()
+    return render_template('past_checks.html', number = number, date = date, checkin = checkin)
+
 
 @app.route('/start', methods = ["GET", "POST"])
 def start():
