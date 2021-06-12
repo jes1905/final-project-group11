@@ -6,10 +6,16 @@ from flask_apscheduler import APScheduler
 import sys
 import sqlite3
 
+sense = SenseHat()
+
 app = Flask(__name__)
+scheduler = APScheduler()
+scheduler.init_app(app)
+scheduler.start()
 
 @app.route('/', methods = ["GET", "POST"])
 def index():
+       scheduler.add_job(id='1', func=show_reminder, trigger='date', run_date='2021-06-12T14:00', args=['Do your daily journal writing!'])
     conn = sqlite3.connect('./static/data/checkin.db')
     curs = conn.cursor()
     checkin = []
@@ -71,7 +77,9 @@ def journal():
     conn.close()
     return render_template('journal.html', entry = entry, date = date, entries = entries)
 
-
+def show_reminder(reminder):
+    sense.show_message('Do your daily Journal Writing')
+    #show your reminder on the Sense HAT
 
 
 if __name__ == '__main__':
