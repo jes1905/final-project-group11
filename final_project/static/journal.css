@@ -1,0 +1,40 @@
+body {
+    font-family:"Josefin Slab";
+    margin: 2em;
+    color:#003366;
+    background:lightblue;
+    text-align:center;
+  }
+  
+  h1 { 
+    font-family: "Josefin Slab"; 
+    font-size: 45px; font-style: normal; 
+    font-variant: normal; font-weight: 700; 
+    line-height: 26.4px; }
+  
+  h2 { 
+    font-family: "Josefin Slab"; 
+    font-size: 39px; font-style: normal; 
+    font-variant: normal; font-weight: 700; 
+    line-height: 26.4px; }
+  
+  form {
+    font-family: "Josefin Slab"; 
+    font-size: 38px; font-style: normal; 
+    font-variant: normal; font-weight: 700; 
+    line-height: 25px; }
+  
+  
+  button { font-family: "Josefin Slab"; 
+    font-size: 13px; 
+    font-style: normal; 
+    font-variant: normal; 
+    font-weight: 400; 
+    line-height: 18.5714px; }
+  
+  .center {
+    margin: auto;
+    width: 50%;
+    border: 3px pink;
+    padding: 10px;
+  }
