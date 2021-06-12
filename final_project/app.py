@@ -26,7 +26,7 @@ def past():
     date = request.form['date']
     conn = sqlite3.connect('./static/data/checkin.db')
     curs = conn.cursor()
-    curs.execute("INSERT INTO checkin(number, date) VALUES((?),(?))",(number,date))
+    curs.execute("INSERT INTO checkin(number, date) VALUES((?),(?))", (number, date))
     conn.commit()
     conn.close()
     conn = sqlite3.connect('./static/data/checkin.db')

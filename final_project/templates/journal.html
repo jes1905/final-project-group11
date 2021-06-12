@@ -16,9 +16,13 @@
 
         <div style="text-align:right">
             <p>see past check ins here:</p>
-            <a href="http://0.0.0.0:5000/past">
-            <input type="submit">
-            </a>
+            <form action = '/past' method = 'post'>
+                <input type = "text" name = "number"/></br>
+                <input type = "date" name = "date"/>
+                <input type="submit">
+            </form>
+            
+            
         </div>
 
         <div style="text-align:center">
